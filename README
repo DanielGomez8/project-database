@@ -54,9 +54,9 @@ Returns: `{
 
 ### DELETE /projects/<project_id>
 This will delete the project information of the project specified in the url
-{
+`{
     "message": "Project deleted"
-}
+}`
 
 ## Testing
 For testing you can either run 'make test' or if you prefer you can run the tests by starting the web app by running `python app.py` and then running `test_client.py` once the server has started. If you are in an IDE you can run the the main function in `app.py` and then run the main function in `test_client.py`
