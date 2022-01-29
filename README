@@ -1,0 +1,67 @@
+# Project data base
+## Setup
+This project uses Flask so make sure you have flask installed in your python environment by either running `pip install flask` on your command line.
+
+If you are using an IDE like [pycharm](https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html) or  please refer to their respective user guides on how to install python packages If you are using an IDE like [pycharm](https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html) or [anaconda]() please refer to their respective user guides on how to install python packages
+
+## Start up
+For the web service to start you simply have to run `python app.py` or 'make run' in your terminal once you are in the project dictionary, if you are using an IDE just load the project into it and run app.py main from there
+
+## Usage
+This is hosted on `http://localhost:5000`.
+
+The following are the available URI routes:
+
+### POST /projects
+This will add a new project with the user information as its owner
+Expects: `{"project_name": "New Project"}`
+Returns: `{
+    "project_id": "Some Generated UUID",
+    "owner_id": "Users UUID",
+    "owner_username": "User name",
+    "project_name": "Project Name",
+    “comments”: []
+}`
+
+
+### POST /projects/<project_id>/comments
+This will add the comment specified in the POST body to the project specified in the url
+Expects: `{"message”: “Sample Text”}`
+Returns: `{
+    "comment_id": "Comment UUID",
+    "commenter_id": "Commenter UUID",
+    "commenter_username": "Comment UUID",
+    "message": "Comment"
+}`
+
+
+### GET /projects/<project_id>
+This will get the project information of the project specified in the url
+Returns: `{
+    "project_id": "Project UUID",
+    "owner_id": "Users UUID",
+    "owner_username": "Project owner UUID",
+    "project_name": "Project name",
+    "comments": [
+        {
+            "comment_id": "Comment UUID",
+            "commenter_id": "Commenter UUID",
+            "commenter_username": "Comment UUID",
+            "message": "Comment"
+        }
+    ]
+}`
+
+### DELETE /projects/<project_id>
+This will delete the project information of the project specified in the url
+{
+    "message": "Project deleted"
+}
+
+## Testing
+For testing you can either run 'make test' or if you prefer you can run the tests by starting the web app by running `python app.py` and then running `test_client.py` once the server has started. If you are in an IDE you can run the the main function in `app.py` and then run the main function in `test_client.py`
+
+## Notes
+I developed this application using `PyCharm` in a windows machine
+
+There was changes made to `auth.py` mainly a helper function that will allow us to verify if the user is authorized to access the API
